@@ -1,0 +1,130 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f8;
+}
+
+/* Left menu */
+#menuItems {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: #1f2933;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* nav links styled like buttons */
+.navBtn {
+  display: block;
+  text-align: center;
+  background: #374151;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px;
+  transition: background 0.3s;
+}
+
+.navBtn:hover { background: #4b5563; }
+
+#jumpMenu {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+#jumpMenu li { margin: 6px 0; }
+
+#jumpMenu a {
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+#jumpMenu a:hover { color: #ffffff; }
+
+/* Main content offset from left menu */
+main {
+  margin-left: 220px;
+  padding-top: 80px;
+}
+
+/* Fixed header */
+header {
+  position: fixed;
+  top: 0;
+  left: 220px;
+  right: 0;
+  height: 60px;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+  z-index: 10;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Articles layout */
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 10px;
+}
+
+article {
+  width: 300px;
+  background: #ffffff;
+  padding: 14px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+article h2 { margin-top: 0; }
+
+article a { color: #2563eb; text-decoration: none; }
+article a:hover { text-decoration: underline; }
+
+/* Always bottom-right */
+#thanks {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2563eb;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+#thanks a { color: #ffffff; text-decoration: none; }
+
+/* Footer */
+footer {
+  margin-top: 40px;
+  padding: 20px;
+  background: #1f2933;
+  color: #ffffff;
+}
+
+footer a { color: #93c5fd; text-decoration: none; }
