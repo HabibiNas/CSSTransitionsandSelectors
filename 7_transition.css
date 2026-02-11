@@ -1,43 +1,44 @@
-/* ========== BASE ========== */
-* { box-sizing: border-box; }
+/* ================= BASE ================= */
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #ffffff;
+  background: #f5f6f7;
 }
 
-/* ========== LEFT NAV (BLUE BUTTONS + BLACK AREA) ========== */
+/* ================= LEFT NAV ================= */
 #menuItems {
   position: fixed;
   top: 0;
   left: 0;
-  width: 240px;
+  width: 220px;
   height: 100vh;
-  background: #000; /* black panel behind buttons (like screenshot) */
-  padding-top: 0;
-  z-index: 50;
+  background: #1f2933;
+  z-index: 100;
 }
 
-/* blue buttons */
+/* main nav buttons */
 .navBtn {
   display: block;
   width: 100%;
-  text-align: center;
-  padding: 12px 10px;
-  background: #0a35ff;
-  color: #ffffff;
+  padding: 12px;
+  background: #2f3e4d;
+  color: white;
   text-decoration: none;
-  border-bottom: 2px solid #001a86;
+  text-align: center;
+  border-bottom: 1px solid #1a252f;
   transition: background 0.3s;
 }
 
-/* hover background change requirement */
+/* nav hover background change */
 .navBtn:hover {
-  background: #061fb3;
+  background: #445b6e;
 }
 
-/* ========== DROPDOWN FOR RECENT ARTICLES ========== */
+/* ================= DROPDOWN ================= */
 .navDropdown {
   position: relative;
 }
@@ -46,169 +47,165 @@ body {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: none;              /* hidden until hover */
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
-  background: #0a35ff;
-  border-bottom: 2px solid #001a86;
-  z-index: 60;
+  background: #2f3e4d;
 }
 
 .navDropdown:hover .dropdownList {
-  display: block;             /* appears on hover */
+  display: block;
 }
 
 .dropdownList a {
   display: block;
-  padding: 10px 10px;
-  color: #ffffff;
+  padding: 10px;
+  color: white;
   text-decoration: none;
-  border-top: 1px solid #001a86;
+  background: #2f3e4d;
   transition: background 0.2s, color 0.2s;
 }
 
-/* submenu hover: background + font color change */
+/* dropdown link hover (font + background color change) */
 .dropdownList a:hover {
-  background: #ffffff;
-  color: #0a35ff;
+  background: white;
+  color: #2f3e4d;
 }
 
-/* ========== MAIN OFFSET (account for nav) ========== */
+/* ================= MAIN LAYOUT ================= */
 main {
-  margin-left: 240px;
-  padding-top: 120px;
+  margin-left: 220px;
+  padding-top: 100px;
 }
 
-/* ========== FIXED TOP HEADER (RED BAR) ========== */
+/* ================= HEADER ================= */
 header {
   position: fixed;
   top: 0;
-  left: 240px;
+  left: 220px;
   right: 0;
-  height: 95px;
-  background: #ff0000;       /* red like screenshot */
+  height: 80px;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 40;
+  border-bottom: 1px solid #ccc;
+  z-index: 50;
 }
 
 header p {
-  margin: 0;
-  font-size: 42px;
   font-family: "Times New Roman", Times, serif;
-  color: #000000;
+  font-size: 32px;
+  margin: 0;
 }
 
-/* page title */
+/* ================= TITLE ================= */
 h1 {
   text-align: center;
-  margin: 18px 0 30px 0;
   font-family: "Times New Roman", Times, serif;
-  font-size: 44px;
-  color: #111;
+  font-size: 36px;
+  margin-bottom: 30px;
 }
 
-/* ========== ARTICLES GRID ========== */
+/* ================= ARTICLE GRID ================= */
 #container {
   display: flex;
   flex-wrap: wrap;
-  gap: 45px;
+  gap: 30px;
   justify-content: center;
-  padding: 10px 30px 80px 30px;
+  padding: 20px;
 }
 
-/* starts light, then darkens + expands on hover over 2s */
+/* article default state (light text) */
 article {
-  width: 240px;
-  padding: 10px 8px 20px 8px;
-  color: #b7b7b7;                 /* lightly-colored text */
+  width: 260px;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  color: #b5b5b5;
   transform: scale(1);
-  transition: color 2s, transform 2s; /* 2 seconds requirement */
+  transition: color 2s, transform 2s;
 }
 
+/* article hover (dark + expand over 2s) */
 article:hover {
-  color: #6d6d6d;                 /* darker on hover */
-  transform: scale(1.08);         /* expands on hover */
+  color: #4a4a4a;
+  transform: scale(1.08);
 }
 
+/* article headings */
 article h2 {
-  margin: 0 0 10px 0;
-  color: #b7b7b7;
-  font-weight: 600;
+  margin-top: 0;
   transition: color 2s;
 }
 
 article:hover h2 {
-  color: #6d6d6d;
+  color: #333;
 }
 
-/* FIRST LETTER RULE:
-   - Times New Roman
-   - 36px
-   - Only for the main text paragraph
-   - Read More unaffected
-*/
+/* ================= FIRST LETTER RULE ================= */
+/* Times New Roman, 36px, ONLY main article text */
 article p:first-of-type::first-letter {
   font-family: "Times New Roman", Times, serif;
   font-size: 36px;
-  line-height: 1;
   float: left;
   padding-right: 6px;
+  line-height: 1;
 }
 
-/* normal paragraph look */
+/* paragraph text */
 article p {
-  margin: 0 0 10px 0;
-  font-size: 12px;
-  line-height: 1.35;
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 10px;
 }
 
-/* ========== READ MORE + ARROW ICON ========== */
+/* ================= READ MORE + ARROW ================= */
 .readMore {
-  color: #0a35ff;
+  color: #1a4cff;
+  font-size: 13px;
   text-decoration: underline;
-  font-size: 12px;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
 }
 
-/* show arrowarrow.png to the right */
+/* arrow image to the right */
 .readMore::after {
   content: "";
-  width: 18px;
-  height: 18px;
-  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
   background-image: url("arrowarrow.png");
   background-size: contain;
   background-repeat: no-repeat;
 }
 
-/* keep Read More unaffected by article color change */
+/* keep Read More unaffected by article hover color */
 article:hover .readMore {
-  color: #0a35ff;
+  color: #1a4cff;
 }
 
-/* ========== THANK YOU BOX (BOTTOM RIGHT) ========== */
+/* ================= THANK YOU BOX ================= */
 #thanks {
   position: fixed;
-  right: 20px;
   bottom: 20px;
-  background: #7fc6ff;  /* light blue like screenshot */
-  padding: 18px 22px;
-  border: 2px solid #0a35ff;
+  right: 20px;
+  background: #9ad3ff;
+  padding: 15px 20px;
+  border: 2px solid #1a4cff;
 }
 
 #thanks a {
-  color: #0a35ff;
   font-family: "Times New Roman", Times, serif;
-  font-size: 34px;
+  font-size: 28px;
+  color: #1a4cff;
   text-decoration: underline;
 }
 
-/* footer (not important for your screenshot) */
-footer { height: 40px; }
-tion: none; }
+/* ================= FOOTER ================= */
+footer {
+  height: 40px;
+}
+
