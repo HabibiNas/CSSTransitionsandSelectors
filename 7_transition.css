@@ -1,130 +1,214 @@
+/* ========== BASE ========== */
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #f4f6f8;
+  background: #ffffff;
 }
 
-/* Left menu */
+/* ========== LEFT NAV (BLUE BUTTONS + BLACK AREA) ========== */
 #menuItems {
   position: fixed;
   top: 0;
   left: 0;
-  width: 220px;
+  width: 240px;
   height: 100vh;
-  background: #1f2933;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  background: #000; /* black panel behind buttons (like screenshot) */
+  padding-top: 0;
+  z-index: 50;
 }
 
-/* nav links styled like buttons */
+/* blue buttons */
 .navBtn {
   display: block;
+  width: 100%;
   text-align: center;
-  background: #374151;
-  color: #fff;
+  padding: 12px 10px;
+  background: #0a35ff;
+  color: #ffffff;
   text-decoration: none;
-  padding: 8px;
+  border-bottom: 2px solid #001a86;
   transition: background 0.3s;
 }
 
-.navBtn:hover { background: #4b5563; }
+/* hover background change requirement */
+.navBtn:hover {
+  background: #061fb3;
+}
 
-#jumpMenu {
+/* ========== DROPDOWN FOR RECENT ARTICLES ========== */
+.navDropdown {
+  position: relative;
+}
+
+.dropdownList {
   list-style: none;
+  margin: 0;
   padding: 0;
-  margin: 10px 0;
-  flex-grow: 1;
-  overflow-y: auto;
+  display: none;              /* hidden until hover */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #0a35ff;
+  border-bottom: 2px solid #001a86;
+  z-index: 60;
 }
 
-#jumpMenu li { margin: 6px 0; }
+.navDropdown:hover .dropdownList {
+  display: block;             /* appears on hover */
+}
 
-#jumpMenu a {
-  color: #cbd5e1;
+.dropdownList a {
+  display: block;
+  padding: 10px 10px;
+  color: #ffffff;
   text-decoration: none;
-  transition: color 0.3s;
+  border-top: 1px solid #001a86;
+  transition: background 0.2s, color 0.2s;
 }
 
-#jumpMenu a:hover { color: #ffffff; }
+/* submenu hover: background + font color change */
+.dropdownList a:hover {
+  background: #ffffff;
+  color: #0a35ff;
+}
 
-/* Main content offset from left menu */
+/* ========== MAIN OFFSET (account for nav) ========== */
 main {
-  margin-left: 220px;
-  padding-top: 80px;
+  margin-left: 240px;
+  padding-top: 120px;
 }
 
-/* Fixed header */
+/* ========== FIXED TOP HEADER (RED BAR) ========== */
 header {
   position: fixed;
   top: 0;
-  left: 220px;
+  left: 240px;
   right: 0;
-  height: 60px;
-  background: #ffffff;
-  border-bottom: 1px solid #ddd;
+  height: 95px;
+  background: #ff0000;       /* red like screenshot */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  font-weight: bold;
-  z-index: 10;
+  z-index: 40;
 }
 
+header p {
+  margin: 0;
+  font-size: 42px;
+  font-family: "Times New Roman", Times, serif;
+  color: #000000;
+}
+
+/* page title */
 h1 {
   text-align: center;
-  margin: 20px 0;
+  margin: 18px 0 30px 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 44px;
+  color: #111;
 }
 
-/* Articles layout */
+/* ========== ARTICLES GRID ========== */
 #container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 45px;
   justify-content: center;
-  padding: 10px;
+  padding: 10px 30px 80px 30px;
 }
 
+/* starts light, then darkens + expands on hover over 2s */
 article {
-  width: 300px;
-  background: #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  width: 240px;
+  padding: 10px 8px 20px 8px;
+  color: #b7b7b7;                 /* lightly-colored text */
+  transform: scale(1);
+  transition: color 2s, transform 2s; /* 2 seconds requirement */
 }
 
 article:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  color: #6d6d6d;                 /* darker on hover */
+  transform: scale(1.08);         /* expands on hover */
 }
 
-article h2 { margin-top: 0; }
+article h2 {
+  margin: 0 0 10px 0;
+  color: #b7b7b7;
+  font-weight: 600;
+  transition: color 2s;
+}
 
-article a { color: #2563eb; text-decoration: none; }
-article a:hover { text-decoration: underline; }
+article:hover h2 {
+  color: #6d6d6d;
+}
 
-/* Always bottom-right */
+/* FIRST LETTER RULE:
+   - Times New Roman
+   - 36px
+   - Only for the main text paragraph
+   - Read More unaffected
+*/
+article p:first-of-type::first-letter {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 36px;
+  line-height: 1;
+  float: left;
+  padding-right: 6px;
+}
+
+/* normal paragraph look */
+article p {
+  margin: 0 0 10px 0;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+/* ========== READ MORE + ARROW ICON ========== */
+.readMore {
+  color: #0a35ff;
+  text-decoration: underline;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* show arrowarrow.png to the right */
+.readMore::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  background-image: url("arrowarrow.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* keep Read More unaffected by article color change */
+article:hover .readMore {
+  color: #0a35ff;
+}
+
+/* ========== THANK YOU BOX (BOTTOM RIGHT) ========== */
 #thanks {
   position: fixed;
-  bottom: 20px;
   right: 20px;
-  background: #2563eb;
-  padding: 10px 14px;
-  border-radius: 6px;
+  bottom: 20px;
+  background: #7fc6ff;  /* light blue like screenshot */
+  padding: 18px 22px;
+  border: 2px solid #0a35ff;
 }
 
-#thanks a { color: #ffffff; text-decoration: none; }
-
-/* Footer */
-footer {
-  margin-top: 40px;
-  padding: 20px;
-  background: #1f2933;
-  color: #ffffff;
+#thanks a {
+  color: #0a35ff;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 34px;
+  text-decoration: underline;
 }
 
-footer a { color: #93c5fd; text-decoration: none; }
+/* footer (not important for your screenshot) */
+footer { height: 40px; }
+tion: none; }
